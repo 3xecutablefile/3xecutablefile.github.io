@@ -29,6 +29,17 @@ body {
   padding: 28px 18px 48px;
 }
 
+.banner {
+  color: var(--green);
+  margin: 0 0 12px 0;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+  white-space: pre;
+  overflow-x: auto;
+  font-size: 12px;
+  line-height: 1;
+}
+
 .masthead {
   display: flex;
   align-items: baseline;
@@ -144,4 +155,3 @@ a:hover { text-decoration: underline; }
   background: var(--green);
   color: #000;
 }
-
