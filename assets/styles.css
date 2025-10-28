@@ -218,3 +218,59 @@ body::after {
   transform: none;
   filter: none;
 }
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  margin-top: 12px;
+}
+
+.skill-category {
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  padding: 16px;
+  border-radius: 6px;
+  transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.skill-category:hover {
+  border-color: var(--green);
+  box-shadow: 0 0 0 1px var(--green), 0 0 12px var(--glow);
+}
+
+.skill-category h4 {
+  color: var(--green);
+  margin: 0 0 10px 0;
+  font-weight: 700;
+  text-shadow: 0 0 4px var(--glow);
+}
+
+.skill-category ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.skill-category li {
+  color: var(--fg);
+  margin-bottom: 6px;
+  position: relative;
+  padding-left: 15px;
+  font-size: 0.9rem;
+}
+
+.skill-category li::before {
+  content: "▸";
+  position: absolute;
+  left: 0;
+  color: var(--green);
+  font-weight: bold;
+}
+
+.block h3 {
+  color: var(--green);
+  margin: 0 0 16px 0;
+  font-weight: 700;
+  text-shadow: 0 0 6px var(--glow);
+}
