@@ -1,0 +1,147 @@
+:root {
+  --bg: #0b0d0e;
+  --bg-2: #0f1112;
+  --fg: #e6efe7;
+  --muted: #9aa7a7;
+  --green: #33ff66;
+  --green-2: #24c754;
+  --border: #1e2a1f;
+}
+
+* { box-sizing: border-box; }
+
+html, body { height: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.terminal {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 28px 18px 48px;
+}
+
+.masthead {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+.masthead .brand {
+  color: var(--fg);
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+.masthead .aka span { color: var(--green); }
+
+.line {
+  margin-top: 22px;
+  letter-spacing: 0.2px;
+}
+
+.ps1 {
+  color: var(--green);
+  margin-right: 10px;
+}
+
+.block {
+  padding-left: 2ch;
+  margin-top: 6px;
+}
+
+.notes {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0 0 0;
+  color: var(--fg);
+}
+
+.notes li::before {
+  content: "— ";
+  color: var(--muted);
+}
+
+.grid.projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.card {
+  display: block;
+  text-decoration: none;
+  color: var(--fg);
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  padding: 14px 14px 12px;
+}
+
+.card:hover {
+  border-color: var(--green);
+}
+
+.card-title {
+  font-weight: 700;
+  color: var(--green);
+}
+
+.card-sub {
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+.code {
+  background: #0c110d;
+  color: #c6f7c6;
+  border: 1px dashed var(--border);
+  padding: 12px 14px;
+  overflow-x: auto;
+}
+
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-left: 2ch;
+  margin-top: 8px;
+}
+
+.badge {
+  display: inline-block;
+  border: 1px solid var(--green);
+  color: var(--fg);
+  background: transparent;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.95rem;
+}
+
+.badge.link { text-decoration: none; }
+
+a { color: var(--green); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.foot {
+  border-top: 1px solid var(--border);
+  margin-top: 40px;
+  padding-top: 12px;
+  color: var(--muted);
+}
+
+::selection {
+  background: var(--green);
+  color: #000;
+}
+

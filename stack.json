@@ -1,0 +1,7 @@
+{
+  "languages": ["Rust", "TypeScript", "Python"],
+  "domains": ["Red Team Ops", "DFIR", "AI Integration"],
+  "tools": ["n8n", "Volatility", "Coderabbit CLI"],
+  "platforms": ["Linux", "Windows", "Embedded"]
+}
+
