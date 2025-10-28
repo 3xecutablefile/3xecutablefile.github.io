@@ -6,6 +6,7 @@
   --green: #33ff66;
   --green-2: #24c754;
   --border: #1e2a1f;
+  --glow: rgba(51, 255, 102, 0.25);
 }
 
 * { box-sizing: border-box; }
@@ -21,6 +22,7 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  position: relative;
 }
 
 .terminal {
@@ -38,6 +40,13 @@ body {
   overflow-x: auto;
   font-size: 12px;
   line-height: 1;
+  text-shadow: 0 0 6px var(--glow);
+  animation: bannerGlow 6s ease-in-out infinite alternate;
+}
+
+@keyframes bannerGlow {
+  from { text-shadow: 0 0 6px var(--glow); opacity: 0.95; }
+  to   { text-shadow: 0 0 10px var(--glow); opacity: 1; }
 }
 
 .masthead {
@@ -52,6 +61,7 @@ body {
   color: var(--fg);
   font-weight: 700;
   letter-spacing: 0.3px;
+  text-shadow: 0 0 4px var(--glow);
 }
 
 .masthead .aka span { color: var(--green); }
@@ -59,11 +69,26 @@ body {
 .line {
   margin-top: 22px;
   letter-spacing: 0.2px;
+  position: relative;
 }
 
 .ps1 {
   color: var(--green);
   margin-right: 10px;
+  text-shadow: 0 0 6px var(--glow);
+}
+
+.cursor {
+  display: inline-block;
+  width: 0.6ch;
+  color: var(--green);
+  margin-left: 2px;
+  animation: blink 1s steps(1, end) infinite;
+}
+
+@keyframes blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
 }
 
 .block {
@@ -97,15 +122,20 @@ body {
   background: var(--bg-2);
   border: 1px solid var(--border);
   padding: 14px 14px 12px;
+  position: relative;
+  transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
 }
 
 .card:hover {
   border-color: var(--green);
+  box-shadow: 0 0 0 1px var(--green), 0 0 18px var(--glow);
+  transform: translateY(-1px);
 }
 
 .card-title {
   font-weight: 700;
   color: var(--green);
+  text-shadow: 0 0 6px var(--glow);
 }
 
 .card-sub {
@@ -119,6 +149,7 @@ body {
   border: 1px dashed var(--border);
   padding: 12px 14px;
   overflow-x: auto;
+  box-shadow: inset 0 0 12px rgba(36, 199, 84, 0.08);
 }
 
 .badges {
@@ -137,9 +168,11 @@ body {
   padding: 2px 8px;
   border-radius: 4px;
   font-size: 0.95rem;
+  transition: background-color 140ms ease, box-shadow 140ms ease, transform 140ms ease;
 }
 
 .badge.link { text-decoration: none; }
+.badge.link:hover { background-color: rgba(51,255,102,0.08); box-shadow: 0 0 10px var(--glow); transform: translateY(-1px); }
 
 a { color: var(--green); text-decoration: none; }
 a:hover { text-decoration: underline; }
@@ -154,4 +187,34 @@ a:hover { text-decoration: underline; }
 ::selection {
   background: var(--green);
   color: #000;
+}
+
+/* Subtle CRT/scanline effect */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.02),
+      rgba(255, 255, 255, 0.02) 1px,
+      rgba(0, 0, 0, 0.02) 2px,
+      rgba(0, 0, 0, 0.02) 3px
+    );
+  mix-blend-mode: overlay;
+  opacity: 0.35;
+}
+
+/* Reveal-on-type behavior when JS is enabled */
+.js .revealable {
+  opacity: 0;
+  transform: translateY(2px);
+  filter: blur(0.3px);
+  transition: opacity 260ms ease, transform 260ms ease, filter 260ms ease;
+}
+.js .revealable.reveal {
+  opacity: 1;
+  transform: none;
+  filter: none;
 }
