@@ -1,18 +1,18 @@
 :root {
-  --bg: #0a0a0a;
-  --bg-2: #0f0f0f;
-  --fg: #e8e8e8;
-  --muted: #888888;
-  --green: #00ff41;
-  --green-2: #00cc33;
-  --blue: #0099ff;
-  --purple: #9966ff;
-  --orange: #ff9933;
-  --red: #ff3333;
+  --bg: #050505;
+  --bg-2: #0a0a0a;
+  --fg: #f0f0f0;
+  --muted: #999999;
+  --green: #00ff88;
+  --green-2: #00cc66;
+  --blue: #00ccff;
+  --purple: #cc66ff;
+  --orange: #ffaa44;
+  --red: #ff4444;
   --border: #1a1a1a;
-  --glow: rgba(0, 255, 65, 0.3);
-  --glow-blue: rgba(0, 153, 255, 0.3);
-  --glow-purple: rgba(153, 102, 255, 0.3);
+  --glow: rgba(0, 255, 136, 0.4);
+  --glow-blue: rgba(0, 204, 255, 0.4);
+  --glow-purple: rgba(204, 102, 255, 0.4);
 }
 
 * { box-sizing: border-box; }
@@ -52,8 +52,8 @@ body {
 }
 
 @keyframes bannerGlow {
-  from { text-shadow: 0 0 8px var(--glow), 0 0 12px var(--glow); opacity: 0.9; }
-  to   { text-shadow: 0 0 12px var(--glow), 0 0 20px var(--glow), 0 0 30px rgba(0, 255, 65, 0.1); opacity: 1; }
+  from { text-shadow: 0 0 10px var(--glow), 0 0 15px var(--glow), 0 0 25px rgba(0, 255, 136, 0.2); opacity: 0.9; }
+  to   { text-shadow: 0 0 15px var(--glow), 0 0 25px var(--glow), 0 0 40px rgba(0, 255, 136, 0.3), 0 0 60px rgba(0, 255, 136, 0.1); opacity: 1; }
 }
 
 @keyframes bannerPulse {
@@ -78,8 +78,8 @@ body {
 }
 
 @keyframes brandGlow {
-  from { text-shadow: 0 0 8px var(--glow), 0 0 16px rgba(0, 255, 65, 0.2); }
-  to   { text-shadow: 0 0 12px var(--glow), 0 0 24px rgba(0, 255, 65, 0.3); }
+  from { text-shadow: 0 0 10px var(--glow), 0 0 20px rgba(0, 255, 136, 0.3); }
+  to   { text-shadow: 0 0 15px var(--glow), 0 0 30px rgba(0, 255, 136, 0.4), 0 0 45px rgba(0, 255, 136, 0.2); }
 }
 
 .masthead .aka span { 
@@ -89,8 +89,8 @@ body {
 }
 
 @keyframes akaGlow {
-  from { color: var(--green); text-shadow: 0 0 6px var(--glow); }
-  to   { color: var(--blue); text-shadow: 0 0 8px var(--glow-blue); }
+  from { color: var(--green); text-shadow: 0 0 8px var(--glow), 0 0 15px rgba(0, 255, 136, 0.3); }
+  to   { color: var(--purple); text-shadow: 0 0 10px var(--glow-purple), 0 0 20px rgba(204, 102, 255, 0.3); }
 }
 
 .line {
