@@ -291,9 +291,10 @@ body::after {
       rgba(0, 0, 0, 0.03) 2px,
       rgba(0, 0, 0, 0.03) 3px
     );
-  mix-blend-mode: overlay;
-  opacity: 0.4;
+  /* Avoid mix-blend-mode to reduce compositing cost */
+  opacity: 0.25;
   animation: scanline 8s linear infinite;
+  will-change: transform, opacity;
 }
 
 @keyframes scanline {
@@ -325,6 +326,7 @@ body::before {
   background-size: 200px 200px, 150px 150px, 100px 100px, 250px 250px;
   animation: float 20s ease-in-out infinite;
   opacity: 0.4;
+  will-change: transform, opacity;
 }
 
 @keyframes float {
@@ -337,8 +339,7 @@ body::before {
 .js .revealable {
   opacity: 0;
   transform: translateY(2px);
-  filter: blur(0.3px);
-  transition: opacity 260ms ease, transform 260ms ease, filter 260ms ease;
+  transition: opacity 260ms ease, transform 260ms ease;
 }
 .js .revealable.reveal {
   opacity: 1;
@@ -439,4 +440,46 @@ body::before {
 @keyframes headingGlow {
   from { text-shadow: 0 0 8px var(--glow), 0 0 16px rgba(0, 255, 65, 0.2); }
   to   { text-shadow: 0 0 12px var(--glow), 0 0 24px rgba(0, 255, 65, 0.3); }
+}
+
+/* Pause CPU/GPU-heavy animations while the user scrolls */
+html.is-scrolling .banner,
+html.is-scrolling .masthead .brand,
+html.is-scrolling .masthead .aka span,
+html.is-scrolling .ps1,
+html.is-scrolling .cursor,
+html.is-scrolling .skill-category li::before,
+html.is-scrolling .block h3,
+html.is-scrolling body::before,
+html.is-scrolling body::after {
+  animation-play-state: paused !important;
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Skip painting offscreen content to improve scroll perf */
+section {
+  content-visibility: auto;
+  contain-intrinsic-size: 600px;
+}
+
+/* Mobile tweaks */
+@media (max-width: 600px) {
+  body { touch-action: manipulation; }
+  .terminal { padding: 20px 12px 36px; }
+  .masthead { flex-direction: column; gap: 6px; }
+  .banner { font-size: 9px; }
+  .badges { padding-left: 0; }
+  .block { padding-left: 1ch; }
+  .skills-grid { grid-template-columns: 1fr; gap: 12px; }
+  .badge { font-size: 0.9rem; padding: 4px 9px; }
+  /* Disable heavy full-screen overlays on phones */
+  body::before, body::after { display: none; }
 }

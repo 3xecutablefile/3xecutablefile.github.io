@@ -1,7 +1,10 @@
 // Simple typewriter for terminal-like sections
 (function () {
-  const SPEED = 28; // ms per char
-  const PAUSE_AFTER = 250; // ms after command completes
+  const isMobile = (typeof window !== 'undefined') && (
+    window.matchMedia('(max-width: 600px)').matches || (navigator.maxTouchPoints || 0) > 0
+  );
+  const SPEED = isMobile ? 14 : 28; // ms per char
+  const PAUSE_AFTER = isMobile ? 120 : 250; // ms after command completes
 
   function typeInto(el, text) {
     return new Promise((resolve) => {
@@ -59,3 +62,19 @@
   }
 })();
 
+// Pause animations during active scrolling to reduce jank
+(function () {
+  let scrollTimer;
+  const root = document.documentElement;
+  window.addEventListener(
+    'scroll',
+    () => {
+      root.classList.add('is-scrolling');
+      clearTimeout(scrollTimer);
+      scrollTimer = setTimeout(() => {
+        root.classList.remove('is-scrolling');
+      }, 150);
+    },
+    { passive: true }
+  );
+})();
