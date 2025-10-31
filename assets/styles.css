@@ -49,6 +49,7 @@ body {
   text-shadow: 0 0 8px var(--glow), 0 0 12px var(--glow);
   animation: bannerGlow 4s ease-in-out infinite alternate, bannerPulse 2s ease-in-out infinite;
   background: linear-gradient(90deg, transparent, rgba(0, 255, 65, 0.02), transparent);
+  contain: paint;
 }
 
 @keyframes bannerGlow {
