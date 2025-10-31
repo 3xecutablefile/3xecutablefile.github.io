@@ -455,6 +455,19 @@ html.is-scrolling body::after {
   animation-play-state: paused !important;
 }
 
+/* During scroll, strip shadows and overlays to cut paint cost */
+html.is-scrolling body::before,
+html.is-scrolling body::after {
+  opacity: 0 !important;
+}
+html.is-scrolling * {
+  text-shadow: none !important;
+  box-shadow: none !important;
+  filter: none !important;
+}
+html.is-scrolling .banner { background: none !important; }
+html.is-scrolling .card::before { display: none !important; }
+
 /* Respect users who prefer reduced motion */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

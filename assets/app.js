@@ -73,7 +73,7 @@
       clearTimeout(scrollTimer);
       scrollTimer = setTimeout(() => {
         root.classList.remove('is-scrolling');
-      }, 150);
+      }, 250);
     },
     { passive: true }
   );
